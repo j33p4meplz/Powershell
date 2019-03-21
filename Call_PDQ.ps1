@@ -16,7 +16,7 @@ $ipV4 = Test-Connection -Computername "$env:COMPUTERNAME" -count 1 |Select -Expa
 #Invoke-Command -ComputerName %PDQ SERVER IP% -ScriptBlock { param ($compname) & 'C:\Program Files (x86)\Admin Arsenal\PDQ Deploy\pdqdeploy.exe' Deploy -Package $Using:package -Targets $Using:ipV4.IPAddressToString} -ArgumentList "$env:COMPUTERNAME"
 
 # Run the deployment command using computername address as the target
-Invoke-Command -ComputerName mchoutil01.mcho.local -Credential $MyCredential -ScriptBlock { param ($compname) & 'C:\Program Files (x86)\Admin Arsenal\PDQ Deploy\pdqdeploy.exe' Deploy -Package $Using:package -Targets $compname} -ArgumentList "$env:COMPUTERNAME"
+Invoke-Command -ComputerName %PDQ SERVER DNS NAME^ -Credential $MyCredential -ScriptBlock { param ($compname) & 'C:\Program Files (x86)\Admin Arsenal\PDQ Deploy\pdqdeploy.exe' Deploy -Package $Using:package -Targets $compname} -ArgumentList "$env:COMPUTERNAME"
 
 #Add a timeout so if the deployment doesn't start it continues after 60 minutes
 $timeout= new-timespan -Minutes 60
